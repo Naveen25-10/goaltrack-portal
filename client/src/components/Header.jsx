@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { Bell, Search, CheckCircle, Target, Lock, X } from 'lucide-react';
+import { Bell, Search, CheckCircle, Target, Lock, X, Menu } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 
-const Header = () => {
+const Header = ({ toggleSidebar }) => {
   const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -60,14 +60,24 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white border-b border-slate-200 h-20 flex items-center justify-between px-8">
-      <div className="flex items-center bg-slate-100 px-3 py-2 rounded-lg w-96">
-        <Search className="w-5 h-5 text-slate-400" />
-        <input 
-          type="text" 
-          placeholder="Search goals, users..." 
-          className="bg-transparent border-none focus:outline-none ml-2 text-sm w-full text-slate-700"
-        />
+    <header className="bg-white border-b border-slate-200 h-20 flex items-center justify-between px-4 md:px-8">
+      <div className="flex items-center">
+        {/* Mobile menu button */}
+        <button 
+          onClick={toggleSidebar}
+          className="md:hidden p-2 mr-2 text-slate-500 hover:bg-slate-100 rounded-md"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+        
+        <div className="flex items-center bg-slate-100 px-3 py-2 rounded-lg w-48 md:w-96">
+          <Search className="w-5 h-5 text-slate-400 shrink-0" />
+          <input 
+            type="text" 
+            placeholder="Search..." 
+            className="bg-transparent border-none focus:outline-none ml-2 text-sm w-full text-slate-700"
+          />
+        </div>
       </div>
       
       <div className="flex items-center space-x-4 relative" ref={panelRef}>

@@ -1,0 +1,17 @@
+graph TD
+    Client[React Frontend Vite] -->|REST API over HTTP/JSON| API[Express.js Node Backend]
+    API -->|Mongoose ODM| DB[(MongoDB)]
+    
+    subgraph Frontend
+        Router[React Router]
+        Context[Auth Context State]
+        Components[UI Components / Tailwind]
+        Charts[Recharts]
+    end
+    
+    subgraph Backend
+        Auth[JWT Middleware]
+        Routes[Express Routers]
+        Controllers[Business Logic]
+        Models[Mongoose Schemas]
+    end

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { LogOut, User, Target, CheckSquare, Users, Settings, FileText, Unlock } from 'lucide-react';
+import { LogOut, User, Target, CheckSquare, Users, Settings, FileText, Unlock, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, setIsOpen }) => {
   const { user, logout } = useContext(AuthContext);
   const location = useLocation();
 
@@ -36,9 +36,19 @@ const Sidebar = () => {
   const navItems = getNavItems();
 
   return (
-    <div className="flex flex-col w-64 bg-slate-900 text-white min-h-screen">
-      <div className="flex items-center justify-center h-20 border-b border-slate-800">
-        <h1 className="text-lg font-bold tracking-tight text-white leading-tight">Goal<span className="text-primary-400">Track</span> <span className="text-slate-400 font-normal text-xs block">Goal & Tracking Portal</span></h1>
+    <div className={`
+      fixed inset-y-0 left-0 z-50 flex flex-col w-64 bg-slate-900 text-white min-h-screen transition-transform duration-300 ease-in-out md:relative md:translate-x-0
+      ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+    `}>
+      <div className="flex items-center justify-between px-4 h-20 border-b border-slate-800">
+        <h1 className="text-lg font-bold tracking-tight text-white leading-tight flex-1 text-center">Goal<span className="text-primary-400">Track</span> <span className="text-slate-400 font-normal text-xs block">Goal & Tracking Portal</span></h1>
+        {/* Mobile close button */}
+        <button 
+          onClick={() => setIsOpen(false)} 
+          className="md:hidden p-1 text-slate-400 hover:text-white"
+        >
+          <X className="w-6 h-6" />
+        </button>
       </div>
       
       <div className="flex-1 overflow-y-auto py-4">

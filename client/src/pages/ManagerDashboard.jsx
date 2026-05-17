@@ -90,7 +90,7 @@ const ManagerDashboard = () => {
           <h3 className="text-lg font-medium leading-6 text-slate-900">Pending Approvals ({pendingGoals.length})</h3>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-slate-200">
+          <div className="overflow-x-auto w-full"><table className="min-w-full divide-y divide-slate-200">
             <thead className="bg-slate-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Employee</th>
@@ -135,7 +135,7 @@ const ManagerDashboard = () => {
                 ))
               )}
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
 
