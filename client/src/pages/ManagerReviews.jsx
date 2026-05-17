@@ -16,7 +16,7 @@ const ManagerReviews = () => {
   const fetchCheckins = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/checkins/team', config);
+      const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/checkins/team', config);
       setCheckins(data);
       
       const initialFeedback = {};
@@ -35,7 +35,7 @@ const ManagerReviews = () => {
   const handleReview = async (id) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/checkins/${id}/review`, { managerComment: feedback[id] }, config);
+      await axios.put(`https://goaltrack-portal.onrender.com/api/checkins/${id}/review`, { managerComment: feedback[id] }, config);
       fetchCheckins();
     } catch (error) {
       console.error(error);

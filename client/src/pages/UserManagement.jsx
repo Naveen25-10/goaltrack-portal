@@ -12,7 +12,7 @@ const UserManagement = () => {
     const fetchUsers = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/admin/users', config);
+        const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/admin/users', config);
         setUsers(data);
         setLoading(false);
       } catch (error) {

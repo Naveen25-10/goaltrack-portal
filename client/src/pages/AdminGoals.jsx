@@ -13,7 +13,7 @@ const AdminGoals = () => {
   const fetchGoals = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/admin/reports/goals', config);
+      const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/admin/reports/goals', config);
       setGoals(data);
       setLoading(false);
     } catch (error) {
@@ -28,7 +28,7 @@ const AdminGoals = () => {
     setUnlocking(goalId);
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/admin/goals/${goalId}/unlock`, {}, config);
+      await axios.put(`https://goaltrack-portal.onrender.com/api/admin/goals/${goalId}/unlock`, {}, config);
       setMessage('Goal unlocked successfully. Employee can now revise it.');
       setTimeout(() => setMessage(''), 4000);
       fetchGoals();

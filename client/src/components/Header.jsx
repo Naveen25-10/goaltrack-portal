@@ -15,7 +15,7 @@ const Header = () => {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         if (user.role === 'Admin') {
-          const { data } = await axios.get('http://localhost:5000/api/admin/auditlogs', config);
+          const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/admin/auditlogs', config);
           setNotifications(data.slice(0, 8).map(log => ({
             id: log._id,
             icon: 'lock',
@@ -23,7 +23,7 @@ const Header = () => {
             subtitle: `By ${log.changedBy?.name} · ${new Date(log.createdAt).toLocaleDateString()}`,
           })));
         } else if (user.role === 'Manager') {
-          const { data } = await axios.get('http://localhost:5000/api/goals/team', config);
+          const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/goals/team', config);
           const submitted = data.filter(g => g.status === 'Submitted').slice(0, 8);
           setNotifications(submitted.map(g => ({
             id: g._id,
@@ -32,7 +32,7 @@ const Header = () => {
             subtitle: `"${g.title}" — awaiting your approval`,
           })));
         } else {
-          const { data } = await axios.get('http://localhost:5000/api/goals', config);
+          const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/goals', config);
           const approved = data.filter(g => g.status === 'Approved').slice(0, 8);
           setNotifications(approved.map(g => ({
             id: g._id,

@@ -16,8 +16,8 @@ const EmployeeDashboard = () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         const [goalsRes, checkinsRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/goals', config),
-          axios.get('http://localhost:5000/api/checkins', config)
+          axios.get('https://goaltrack-portal.onrender.com/api/goals', config),
+          axios.get('https://goaltrack-portal.onrender.com/api/checkins', config)
         ]);
         setGoals(goalsRes.data);
         setCheckins(checkinsRes.data);

@@ -17,7 +17,7 @@ const CreateGoal = () => {
     const fetchDrafts = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/goals', config);
+        const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/goals', config);
         const drafts = data.filter(g => g.status === 'Draft' || g.status === 'Rejected');
         if (drafts.length > 0) {
           setGoals(drafts);
@@ -64,7 +64,7 @@ const CreateGoal = () => {
 
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post('http://localhost:5000/api/goals', { goals }, config);
+      await axios.post('https://goaltrack-portal.onrender.com/api/goals', { goals }, config);
       setSuccess('Goals submitted successfully to your manager!');
       setTimeout(() => navigate('/'), 2000);
     } catch (err) {

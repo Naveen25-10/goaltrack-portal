@@ -31,12 +31,12 @@ const Checkins = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       // Fetch approved goals
-      const goalsRes = await axios.get('http://localhost:5000/api/goals', config);
+      const goalsRes = await axios.get('https://goaltrack-portal.onrender.com/api/goals', config);
       const approvedGoals = goalsRes.data.filter(g => g.status === 'Approved');
       setGoals(approvedGoals);
 
       // Fetch existing checkins
-      const checkinsRes = await axios.get('http://localhost:5000/api/checkins', config);
+      const checkinsRes = await axios.get('https://goaltrack-portal.onrender.com/api/checkins', config);
       
       const initialForm = {};
       approvedGoals.forEach(goal => {
@@ -74,7 +74,7 @@ const Checkins = () => {
         quarter: currentQuarter,
         ...formData[goalId]
       };
-      await axios.post('http://localhost:5000/api/checkins', payload, config);
+      await axios.post('https://goaltrack-portal.onrender.com/api/checkins', payload, config);
       setSaveStatus('Saved successfully');
       setTimeout(() => setSaveStatus(''), 2000);
       fetchData(); // Refresh progress score

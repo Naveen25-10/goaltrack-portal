@@ -13,7 +13,7 @@ const Reports = () => {
     const fetchGoals = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/admin/reports/goals', config);
+        const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/admin/reports/goals', config);
         setGoals(data);
         setLoading(false);
       } catch (error) {

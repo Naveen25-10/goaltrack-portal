@@ -18,7 +18,7 @@ const ManagerDashboard = () => {
   const fetchTeamGoals = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const { data } = await axios.get('http://localhost:5000/api/goals/team', config);
+      const { data } = await axios.get('https://goaltrack-portal.onrender.com/api/goals/team', config);
       setTeamGoals(data);
       setLoading(false);
     } catch (error) {
@@ -30,7 +30,7 @@ const ManagerDashboard = () => {
   const handleReview = async (id, status, extra = {}) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/goals/${id}/review`, { status, ...extra }, config);
+      await axios.put(`https://goaltrack-portal.onrender.com/api/goals/${id}/review`, { status, ...extra }, config);
       fetchTeamGoals();
     } catch (error) {
       console.error(error);
@@ -40,7 +40,7 @@ const ManagerDashboard = () => {
   const handleSaveEdit = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/goals/${editGoal._id}/review`, {
+      await axios.put(`https://goaltrack-portal.onrender.com/api/goals/${editGoal._id}/review`, {
         target: editGoal.target,
         weightage: Number(editGoal.weightage),
         managerComments: editGoal.managerComments,
@@ -58,7 +58,7 @@ const ManagerDashboard = () => {
     e.preventDefault();
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post('http://localhost:5000/api/goals/shared', sharedGoal, config);
+      await axios.post('https://goaltrack-portal.onrender.com/api/goals/shared', sharedGoal, config);
       setShowSharedModal(false);
       setSharedGoal({ title: '', thrustArea: '', uomType: 'Percentage', target: '', description: '' });
       alert('Shared goal pushed to all team members successfully!');

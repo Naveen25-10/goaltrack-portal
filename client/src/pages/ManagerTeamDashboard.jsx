@@ -17,8 +17,8 @@ const ManagerTeamDashboard = () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         const [goalsRes, checkinsRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/goals/team', config),
-          axios.get('http://localhost:5000/api/checkins/team', config)
+          axios.get('https://goaltrack-portal.onrender.com/api/goals/team', config),
+          axios.get('https://goaltrack-portal.onrender.com/api/checkins/team', config)
         ]);
         setTeamGoals(goalsRes.data);
         setCheckins(checkinsRes.data);

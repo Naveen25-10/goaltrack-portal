@@ -15,8 +15,8 @@ const AdminDashboard = () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         const [analyticsRes, logsRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/admin/analytics', config),
-          axios.get('http://localhost:5000/api/admin/auditlogs', config)
+          axios.get('https://goaltrack-portal.onrender.com/api/admin/analytics', config),
+          axios.get('https://goaltrack-portal.onrender.com/api/admin/auditlogs', config)
         ]);
         setStats(analyticsRes.data);
         setAuditLogs(logsRes.data);
